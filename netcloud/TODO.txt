@@ -1,0 +1,2 @@
+1: too many lines are not listed, only if something is missing
+2: make templates available according to config file
