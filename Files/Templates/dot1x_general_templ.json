@@ -1,0 +1,21 @@
+{
+  "TEMPLATE_NAME": "DOT1X",
+  "TEMPLATE_TYPE": "SINGLE_LINE_AND_MULTI_SECTION",
+  "SECTIONS": [],
+  "SINGLE_LINE_REGEXES": [
+    "ip device tracking probe interval 60",
+    "ip device tracking probe auto-source override",
+    "ip device tracking probe delay 15",
+    "authentication mac-move permit",
+    "authentication logging verbose",
+    "authentication critical recovery delay 1000",
+    "dot1x system-auth-control",
+    "dot1x critical eapol",
+    "device-tracking binding reachable-lifetime 60",
+    "mac address-table notification change interval 10",
+    "mac address-table notification change history-size 500",
+    "mac address-table notification change",
+    "mac address-table notification mac-move"
+  ]
+}
+
