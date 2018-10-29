@@ -19,10 +19,11 @@ def main():
         regex_pattern = template_dict["SECTION_REGEX"]
         sub_regex_patterns = template_dict["LINES"]
         template_name = template_dict["TEMPLATE_NAME"]
+        template_type = template_dict["TEMPLATE_TYPE"]
 
         print("VERIFYING TEMPlATE: " + template_name)
 
-        ## Find all matching sections
+        ## Find all matching sections (multi line objects)
         for object in confparse.find_objects(regex_pattern):
             is_valid = True
 
@@ -44,6 +45,17 @@ def main():
 
             #Reset cfgdiffs for next object
             cfgdiffs = CiscoConfParse([])
+
+        ## Find all single line objects
+        if(template_type=='SINGLE_LINE_AND_SECTION'):
+            is_valid = True
+            regex_patterns = template_dict["SINGLE_LINE_REGEXES"]
+            for line in regex_patterns:
+                if not confparse.has_line_with(line):
+                    print(" -> MISSING OR DIFFERENTLY CONFIGURED LINES: " + line)
+                    is_valid = False
+            if (is_valid==True):
+                print("-> SUCCESS - GENERAL CONFIG PARTS: " + template_name)
 
 
 if __name__ == "__main__":

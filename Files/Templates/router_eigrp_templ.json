@@ -1,5 +1,6 @@
 {
   "TEMPLATE_NAME" : "EIGRP ROUTER",
+  "TEMPLATE_TYPE" : "SECTION",
   "SECTION_REGEX" : "router eigrp",
   "LINES" : [
     "network 10.0.0.0",

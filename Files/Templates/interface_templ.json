@@ -1,5 +1,6 @@
 {
   "TEMPLATE_NAME" : "DOT1X INTERFACE",
+  "TEMPLATE_TYPE" : "SECTION",
   "SECTION_REGEX" : "^interface GigabitEthernet[23456]/",
   "LINES" : [
     "description \\*\\*\\* 802\\.1X CLIENT \\*\\*\\*",
