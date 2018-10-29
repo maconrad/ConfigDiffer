@@ -1,0 +1,57 @@
+{
+  "TEMPLATE_NAME" : "RADIUS",
+  "TEMPLATE_TYPE" : "SINGLE_LINE_AND_MULTI_SECTION",
+  "SECTIONS" : [
+    {
+      "NAME" : "Radius CoA",
+      "SECTION_REGEX" : "aaa server radius dynamic-author",
+      "LINES" : [
+        "client 10.132.190.1 server-key 7",
+        "client 10.132.190.2 server-key 7"
+      ]
+    },
+    {
+      "NAME" : "Radius Server Group",
+      "SECTION_REGEX" : "aaa group server radius ISE-RADIUS",
+      "LINES" : [
+        "server name CBTISE02_RADIUS",
+        "server name CBTISE01_RADIUS"
+      ]
+    },
+    {
+      "NAME" : "Radius Server 1",
+      "SECTION_REGEX" : "radius server CBTISE01_RADIUS",
+      "LINES" : [
+        "address ipv4 10.132.190.1 auth-port 1812 acct-port 1813",
+        "timeout 5",
+        "retransmit 1",
+        "automate-tester username dummy probe-on",
+        "key 7"
+      ]
+    },
+    {
+      "NAME" : "Radius Server 2",
+      "SECTION_REGEX" : "radius server CBTISE02_RADIUS",
+      "LINES" : [
+        "address ipv4 10.132.190.2 auth-port 1812 acct-port 1813",
+        "timeout 5",
+        "retransmit 1",
+        "automate-tester username dummy probe-on",
+        "key 7"
+      ]
+    }
+  ],
+  "SINGLE_LINE_REGEXES" : [
+    "aaa authentication dot1x default group ISE-RADIUS",
+    "aaa authorization network default group ISE-RADIUS",
+    "aaa accounting update newinfo periodic 600",
+    "aaa accounting dot1x default start-stop group ISE-RADIUS",
+    "no aaa accounting system guarantee-first",
+    "ip radius source-interface Loopback0",
+    "radius-server attribute 6 on-for-login-auth",
+    "radius-server attribute 8 include-in-access-req",
+    "radius-server attribute 25 access-request include",
+    "radius-server dead-criteria time 5 tries 3",
+    "radius-server deadtime 1"
+  ]
+}

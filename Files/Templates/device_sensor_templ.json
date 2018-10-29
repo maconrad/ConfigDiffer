@@ -1,0 +1,37 @@
+{
+  "TEMPLATE_NAME" : "DEVICE SENSOR",
+  "TEMPLATE_TYPE" : "SINGLE_LINE_AND_MULTI_SECTION",
+  "SECTIONS" : [
+    {
+      "NAME" : "Device Sensor LLDP",
+      "SECTION_REGEX" : "device-sensor filter-list cdp list cdp-list",
+      "LINES" : [
+        "tlv name device-name",
+        "tlv name capabilities-type",
+        "tlv name platform-type"
+      ]
+    },
+    {
+      "NAME" : "Device Sensor DHCP",
+      "SECTION_REGEX" : "device-sensor filter-list dhcp list dhcp-list",
+      "LINES" : [
+        "option name vendor-encapsulated-options",
+        "option number 60",
+        "option number 66",
+        "option number 150",
+        "option number 176",
+        "option number 242"
+        ]
+    }
+  ],
+  "SINGLE_LINE_REGEXES" : [
+    "device-sensor filter-spec h323 exclude all",
+    "device-sensor filter-spec sip exclude all",
+    "device-sensor filter-spec mdns exclude all",
+    "device-sensor filter-spec lldp exclude all",
+    "device-sensor filter-spec dhcp include list dhcp-list",
+    "device-sensor filter-spec cdp include list cdp-list",
+    "device-sensor accounting",
+    "device-sensor notify all-changes"
+  ]
+}

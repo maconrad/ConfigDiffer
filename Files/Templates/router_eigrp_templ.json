@@ -1,11 +1,16 @@
 {
   "TEMPLATE_NAME" : "EIGRP ROUTER",
-  "TEMPLATE_TYPE" : "SECTION",
-  "SECTION_REGEX" : "router eigrp",
-  "LINES" : [
-    "network 10.0.0.0",
-    "passive-interface default",
-    "eigrp router-id",
-    "eigrp stub connected"
-  ]
+  "TEMPLATE_TYPE" : "MULTI_SECTION",
+  "SECTIONS" : [
+    {
+      "NAME" : "EIGRP",
+      "SECTION_REGEX" : "router eigrp",
+      "LINES" : [
+        "network 10.0.0.0",
+        "passive-interface default",
+        "eigrp router-id",
+        "eigrp stub connected"
+      ]
+    }
+    ]
 }
