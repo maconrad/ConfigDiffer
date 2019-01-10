@@ -1,0 +1,7 @@
+router eigrp 1
+ network 10.0.0.0
+ passive-interface default
+ no passive-interface GigabitEthernet1/3
+ no passive-interface GigabitEthernet1/4
+ eigrp router-id 10.103.1.48
+ eigrp stub connected summary
