@@ -31,27 +31,43 @@ def main():
             print(f'{Fore.GREEN}-VERIFYING SECTION: {Fore.CYAN}' + section_name + f'{Style.RESET_ALL}')
 
             ## Find all matching sections (multi line objects)
-            for object in confparse.find_objects(regex_pattern):
-                is_valid = True
-
-                ## Mark that some lines are missing if we ever have to print that object
-                cfgdiffs.append_line(f'{Fore.RED} -> MISSING OR DIFFERENTLY CONFIGURED LINES')
-                cfgdiffs.append_line(f'   ' + object.text + f'{Style.RESET_ALL}')
-
-                ## Search children of the object
+            objects = confparse.find_objects(regex_pattern)
+            ## Verify first if the whole section is missing
+            if len(objects) == 0:
+                cfgdiffs.append_line(f'{Fore.RED} -> MISSING WHOLE SECTION:')
+                cfgdiffs.append_line(f'{Fore.RED}    ' + regex_pattern)
                 for subregex in sub_regex_patterns:
-                    if not (object.re_search_children(subregex)):
-                        cfgdiffs.append_line("    " + subregex)
-                        is_valid = False
+                    cfgdiffs.append_line("        " + subregex)
+                    is_valid = False
 
-                if(is_valid==False):
+                if (is_valid == False):
                     for line in cfgdiffs.ioscfg:
                         print(f'{Fore.RED}' + line + f'{Style.RESET_ALL}')
-                else:
-                    print(f'{Fore.GREEN} -> SUCCESS - CONFIG SECTION: ' + template_name + ' FOR OBJECT: ' + object.text + f'{Style.RESET_ALL}')
-
-                #Reset cfgdiffs for next object
                 cfgdiffs = CiscoConfParse([])
+
+            ## If the section is there, verify if some parts are missing
+            else:
+                for object in objects:
+                    is_valid = True
+
+                    ## Mark that some lines are missing if we ever have to print that object
+                    cfgdiffs.append_line(f'{Fore.RED} -> MISSING OR DIFFERENTLY CONFIGURED LINES')
+                    cfgdiffs.append_line(f'   ' + object.text + f'{Style.RESET_ALL}')
+
+                    ## Search children of the object
+                    for subregex in sub_regex_patterns:
+                        if not (object.re_search_children(subregex)):
+                            cfgdiffs.append_line("    " + subregex)
+                            is_valid = False
+
+                    if(is_valid==False):
+                        for line in cfgdiffs.ioscfg:
+                            print(f'{Fore.RED}' + line + f'{Style.RESET_ALL}')
+                    else:
+                        print(f'{Fore.GREEN} -> SUCCESS - CONFIG SECTION: ' + template_name + ' FOR OBJECT: ' + object.text + f'{Style.RESET_ALL}')
+
+                    #Reset cfgdiffs for next object
+                    cfgdiffs = CiscoConfParse([])
 
         ## Find all single line objects
         if(template_type=='SINGLE_LINE_AND_MULTI_SECTION'):

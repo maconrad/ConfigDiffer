@@ -31,7 +31,7 @@
         "storm-control action shutdown",
         "qos trust device cisco-phone",
         "spanning-tree portfast edge",
-        "service-policy output qos-egress",
+        "qos trust device cisco-phone",
         "ip dhcp snooping limit rate 10"
       ]
     }

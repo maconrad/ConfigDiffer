@@ -3,7 +3,7 @@
   "TEMPLATE_TYPE" : "SINGLE_LINE_AND_MULTI_SECTION",
   "SECTIONS" : [
     {
-      "NAME" : "Device Sensor LLDP",
+      "NAME" : "Device Sensor CDP",
       "SECTION_REGEX" : "device-sensor filter-list cdp list cdp-list",
       "LINES" : [
         "tlv name device-name",

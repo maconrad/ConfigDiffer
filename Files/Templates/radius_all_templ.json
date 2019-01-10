@@ -6,23 +6,23 @@
       "NAME" : "Radius CoA",
       "SECTION_REGEX" : "aaa server radius dynamic-author",
       "LINES" : [
-        "client 10.132.190.1 server-key 7",
-        "client 10.132.190.2 server-key 7"
+        "client 10.32.190.30 server-key 7",
+        "client 10.32.190.31 server-key 7"
       ]
     },
     {
       "NAME" : "Radius Server Group",
       "SECTION_REGEX" : "aaa group server radius ISE-RADIUS",
       "LINES" : [
-        "server name CBTISE02_RADIUS",
-        "server name CBTISE01_RADIUS"
+        "server name CBNISE30_RADIUS",
+        "server name CBNISE31_RADIUS"
       ]
     },
     {
       "NAME" : "Radius Server 1",
-      "SECTION_REGEX" : "radius server CBTISE01_RADIUS",
+      "SECTION_REGEX" : "radius server CBNISE30_RADIUS",
       "LINES" : [
-        "address ipv4 10.132.190.1 auth-port 1812 acct-port 1813",
+        "address ipv4 10.32.190.30 auth-port 1812 acct-port 1813",
         "timeout 5",
         "retransmit 1",
         "automate-tester username dummy probe-on",
@@ -31,9 +31,9 @@
     },
     {
       "NAME" : "Radius Server 2",
-      "SECTION_REGEX" : "radius server CBTISE02_RADIUS",
+      "SECTION_REGEX" : "radius server CBNISE31_RADIUS",
       "LINES" : [
-        "address ipv4 10.132.190.2 auth-port 1812 acct-port 1813",
+        "address ipv4 10.32.190.31 auth-port 1812 acct-port 1813",
         "timeout 5",
         "retransmit 1",
         "automate-tester username dummy probe-on",

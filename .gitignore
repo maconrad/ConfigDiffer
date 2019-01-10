@@ -1,0 +1,13 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Python template
+
+# Sphinx documentation
+docs/build/
+
+# Customer Configs
+Files/SampleCfgs/
+
+# PyCharm Project Files
+.idea/
+
+

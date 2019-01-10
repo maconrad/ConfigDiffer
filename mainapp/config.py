@@ -19,4 +19,4 @@ TEMPLATES = [
 ]
 
 #USER Config
-USER_CONFIG = "../Files/SampleCfgs/Test1_Correct.txt"
+USER_CONFIG = "../Files/SampleCfgs/SBGF-008P.txt"
